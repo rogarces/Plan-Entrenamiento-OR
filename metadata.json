@@ -1,0 +1,5 @@
+{
+  "name": "Plan de Entrenamiento",
+  "description": "Una aplicación que genera planes de entrenamiento de running personalizados para media maratón utilizando la API de Gemini, basado en las características y objetivos del usuario.",
+  "requestFramePermissions": []
+}
