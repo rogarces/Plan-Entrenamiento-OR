@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 type IconProps = {
@@ -13,11 +12,15 @@ export const LogoIcon: React.FC<IconProps> = ({ className }) => (
     </svg>
 );
 
+// Changed from a 'play' icon to a running person icon for better representation of a training session.
 export const RunIcon: React.FC<IconProps> = ({ className }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+        <path fillRule="evenodd" d="M12.963 2.286a.75.75 0 00-1.071 1.052A9.75 9.75 0 0118.68 12.383.75.75 0 0020.18 12.5A11.25 11.25 0 0012.963 2.286z" clipRule="evenodd" />
+        <path fillRule="evenodd" d="M11.037 2.286a.75.75 0 00-1.052 1.071A9.75 9.75 0 013.818 12.383a.75.75 0 00-1.5.018A11.25 11.25 0 0011.037 2.286zM12 4.5a.75.75 0 01.75.75v6a.75.75 0 01-1.5 0v-6A.75.75 0 0112 4.5z" clipRule="evenodd" />
+        <path d="M12 12.383a.75.75 0 01.608.358l4.5 6.75a.75.75 0 01-1.215.81l-3.892-5.838-3.892 5.838a.75.75 0 01-1.215-.81l4.5-6.75A.75.75 0 0112 12.383z" />
     </svg>
 );
+
 
 export const RestIcon: React.FC<IconProps> = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
@@ -32,9 +35,10 @@ export const NoteIcon: React.FC<IconProps> = ({ className }) => (
     </svg>
 );
 
+// Fixed corrupted SVG path which was causing the print function to fail.
 export const PrintIcon: React.FC<IconProps> = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6 18.25m0 0a2.25 2.25 0 0 0 2.25 2.25h1.5a2.25 2.25 0 0 0 2.25-2.25m-7.5 0h7.5m-7.5 0-1.12-3.184a5.25 5.25 0 0 1 1.12-5.464M6 18.25h12m-12 0a2.25 2.25 0 0 1 2.25-2.25h1.5a2.25 2.25 0 0 1 2.25 2.25m-7.5 0h7.5m-7.5 0 1.12-3.184m-1.12 5.464a5.25 5.25 0 0 0-1.12-5.464M18 18.25h-12m12 0a2.25 2.25 0 0 0-2.25-2.25h-1.5a2.25 2.25 0 0 0-2.25 2.25m7.5 0h-7.5m7.5 0 1.12-3.184a5.25 5.25 0 0 0-1.12-5.464M18 18.25-18 18.25" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6 18.25m0 0a2.25 2.25 0 0 0 2.25 2.25h1.5a2.25 2.25 0 0 0 2.25-2.25m-7.5 0h7.5m-7.5 0-1.12-3.184a5.25 5.25 0 0 1 1.12-5.464M6 18.25h12m-12 0a2.25 2.25 0 0 1 2.25-2.25h1.5a2.25 2.25 0 0 1 2.25 2.25m-7.5 0h7.5m-7.5 0 1.12 3.184m-1.12-5.464a5.25 5.25 0 0 0-1.12-5.464M18 18.25h-12m12 0a2.25 2.25 0 0 0-2.25-2.25h-1.5a2.25 2.25 0 0 0-2.25 2.25m7.5 0h-7.5m7.5 0 1.12-3.184a5.25 5.25 0 0 0-1.12-5.464M18 18.25l-1.12-3.184m0 0a5.25 5.25 0 0 0-1.12-5.464M16.88 6.171c-1.12-1.12-2.6-1.75-4.13-1.75-1.53 0-3.01.63-4.13 1.75m8.26 0a4.5 4.5 0 0 1-8.26 0" />
     </svg>
 );
 
@@ -44,9 +48,10 @@ export const UserIcon: React.FC<IconProps> = ({ className }) => (
     </svg>
 );
 
+// Changed from a chevron to a 'sparkles' icon to better represent generation.
 export const RunningIcon: React.FC<IconProps> = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
     </svg>
 );
 

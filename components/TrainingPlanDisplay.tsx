@@ -1,18 +1,57 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { TrainingPlan } from '../types';
 import { PrintIcon, RunIcon, RestIcon, NoteIcon } from './icons';
+
+// Declara la librería html2pdf para que TypeScript la reconozca
+declare const html2pdf: any;
 
 interface TrainingPlanDisplayProps {
     plan: TrainingPlan;
     userName: string;
 }
 
-const handlePrint = () => {
-    window.print();
-};
-
 export const TrainingPlanDisplay: React.FC<TrainingPlanDisplayProps> = ({ plan, userName }) => {
+    const [isPrinting, setIsPrinting] = useState(false);
+
+    const handlePrint = async () => {
+        setIsPrinting(true);
+        const element = document.querySelector('.plan-printable-area');
+        
+        if (!element) {
+            console.error("Printable area not found!");
+            setIsPrinting(false);
+            return;
+        }
+
+        const opt = {
+            margin: [0.5, 0.5, 0.5, 0.5], // pulgadas
+            filename: `plan-entrenamiento-${userName.toLowerCase().replace(/[\s/]/g, '-')}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: {
+                scale: 2,
+                useCORS: true,
+                logging: false,
+                onclone: (document: Document) => {
+                    // Oculta el botón en el clon del DOM que se usa para generar el PDF
+                    const printButton = document.getElementById('print-button');
+                    if(printButton) {
+                        printButton.style.visibility = 'hidden';
+                    }
+                }
+            },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        try {
+            await html2pdf().set(opt).from(element).save();
+        } catch (error) {
+            console.error("Error generating PDF:", error);
+        } finally {
+            setIsPrinting(false);
+        }
+    };
+
     return (
         <div className="animate-fade-in bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200 plan-printable-area">
             <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-6 gap-4">
@@ -23,10 +62,20 @@ export const TrainingPlanDisplay: React.FC<TrainingPlanDisplayProps> = ({ plan, 
                 <button
                     id="print-button"
                     onClick={handlePrint}
-                    className="flex items-center justify-center gap-2 bg-slate-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors duration-200"
+                    disabled={isPrinting}
+                    className="flex items-center justify-center gap-2 w-[220px] bg-slate-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors duration-200 disabled:bg-slate-500 disabled:cursor-wait"
                 >
-                    <PrintIcon className="h-5 w-5" />
-                    <span>Imprimir / Guardar PDF</span>
+                    {isPrinting ? (
+                        <>
+                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                            <span>Generando PDF...</span>
+                        </>
+                    ) : (
+                        <>
+                            <PrintIcon className="h-5 w-5" />
+                            <span>Imprimir / Guardar PDF</span>
+                        </>
+                    )}
                 </button>
             </div>
             
